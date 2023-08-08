@@ -15,7 +15,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   //This will be the controller we use to take in what the user will be guessing
-  final guessTextController = TextEditingController();
+  var guessTextController = TextEditingController();
 
   //These two variables will be used if there is an issue with the letter the user attempts to guess
   bool showError = false;
@@ -74,19 +74,39 @@ class _GameScreenState extends State<GameScreen> {
                               // TODO: Calling the guess function on the game and passing it 'userGuess'
 
                               // TODO: Uncomment the following lines and get them to work. Follow the order of the tests, not the order that the TODOs they appear in the code.
-                              // if( its a repeat ){
-                              // showError = true;
-                              // guessTextFieldErrorMessage =
-                              //     'already used that letter';
-                              // }else{
-                              //   showError = false;
-                              // }
+                               if( widget.game.guess(letter) ){
+                               showError = false;
+                               }else{
+                                showError = true;
+                                guessTextFieldErrorMessage =
+                                   'already used that letter';
+                               }
+                               
+                            
+
+                               FocusScope.of(context).unfocus();
 
                               // TODO: Reset the text in the textbox after a guess
-
+                                
                               // TODO: Check if the user has won the game, if they did navigate them to the win screen
+                                 if (widget.game.status() == 'win') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                               WinScreen()));
+                              }
 
+                                
                               // TODO: Check if the user has lost the game, if they did navigate them to the lose screen. You will need to pass the game to the LoseScreen.
+                                
+                                if (widget.game.status() == 'lose') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            LoseScreen(widget.game)));
+                              }
 
                             } catch (e) {
                               //If the user is guessing an invalid character return this message
