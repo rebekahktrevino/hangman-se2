@@ -4,6 +4,7 @@ class HangmanGame {
   String _word;
   String _correctGuesses = "";
   String _wrongGuesses = "";
+  int _score =0;
 
   //Constructor starts off with blank strings that we will concatenate during the course of play
   //Defines the initial state of an object
@@ -11,6 +12,7 @@ class HangmanGame {
     _word = word;
     _correctGuesses = "";
     _wrongGuesses = "";
+    _score =0;
   }
 
   get length => null;
@@ -56,14 +58,17 @@ class HangmanGame {
       for(int i = 0; i < _word.length; ++i)
       {
         if(_word[i] == letter)
-        { }
+        {
+          _score += 8;
+         }
       }
       return true;
     
     } else {
       //same as the other one, it checks if it's part of the alphabet
-      if (_wrongGuesses.contains(letter)) 
+      if (_wrongGuesses.contains (letter)) 
       {
+        _score = _score -8;
         return false;
       }
       //This means the letter is not in word
@@ -104,6 +109,7 @@ class HangmanGame {
 
   }
 
+
   //when running integration tests always return "banana"
   static Future<String> getStartingWord(bool areWeInIntegrationTest) async {
     String word;
@@ -121,4 +127,12 @@ class HangmanGame {
 
     return word;
   }
+
+  int score(){
+      _score = 3 * _score;
+      if (_score < 2) {
+        _score = 0;
+      }
+      return _score;
+    }
 }

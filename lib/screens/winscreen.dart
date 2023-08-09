@@ -6,6 +6,8 @@ import 'gamescreen.dart';
 
 class WinScreen extends StatelessWidget {
   @override
+  HangmanGame  game;
+  WinScreen (this.game);
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -25,6 +27,12 @@ class WinScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             ),
+
+             Padding(
+              padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
+              child: Text('SCORE: ' + game.score().toString(),
+              key: Key('Winning Score: -text'))),
+
             ElevatedButton(
                 //Here we are giving the new game button a key for use in our integration tests in test_driver/app_test.dart
                 key: Key('new-game-btn'),

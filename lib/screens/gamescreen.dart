@@ -94,8 +94,19 @@ class _GameScreenState extends State<GameScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                               WinScreen()));
+                                               WinScreen(widget.game)));
                               }
+
+
+
+                              Padding (
+                                padding: 
+                                const EdgeInsets.fromLTRB(15, 20, 15, 20),
+                                child: Text(
+                                  'SCORE: ' + widget.game.score().toString(),
+                                  key: Key('score-text'),
+                                )
+                                );
 
                                 
                               // TODO: Check if the user has lost the game, if they did navigate them to the lose screen. You will need to pass the game to the LoseScreen.
