@@ -33,6 +33,14 @@ class LoseScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
             ),
+
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
+              child: Text('SCORE: ' + game.score().toString(),
+              key: Key('Losing Score: -text'))),
+
+
             ElevatedButton(
                 //Here we are giving the new game button a key for use in our integration tests in test_driver/app_test.dart
                 key: Key('new-game-btn'),
